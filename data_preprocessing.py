@@ -24,3 +24,18 @@ print("Done!")
 is_long = pd.Series(booleans)
 
 new_data = data[is_long]
+
+
+X = new_data.iloc[:,:37].values
+
+print(X)
+print("----------------------\n-----------------------\n")
+
+
+# Finding the missing data
+from sklearn.preprocessing import Imputer
+imputer = Imputer(missing_values="NaN", strategy = "mean", axis = 0)
+imputer = imputer.fit(X[:,1:37])
+X[:,1:37] = imputer.transform(X[:,1:37])
+
+print(X)
